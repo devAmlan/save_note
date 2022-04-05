@@ -11,12 +11,11 @@ function Sidebar() {
   return (
     <>
       <div className="side_bar">
-  
         <ul>
           <Link to="/"><li><AiOutlineHome/><p>Home</p></li></Link>
           <Link to="/label"><li><MdOutlineLabel/><p>Label</p></li></Link>
-          <li><BsArchive/><p>Archive</p></li>
-          <li><BsTrash/><p>Trash</p></li>
+          <Link to="/archive"><li><BsArchive/><p>Archive</p></li></Link>
+          <Link to="/trash"><li><BsTrash/><p>Trash</p></li></Link>
           <li><CgProfile/><p>Profile</p></li>
           <button onClick={()=>{setShow(true)}}>Create New Note</button>
         </ul>
