@@ -1,27 +1,12 @@
-import Navbar from './component/navbar/Navbar';
-import Sidebar from "./component/sidebar/Sidebar"
-import Home from './page/home/Home';
-import Trash from './page/trash/Trash';
-import Archive from './page/archive/Archive';
-import { NoteProvider } from "./context/Notecontext"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import React,{useContext} from "react";
+import Dashboard from "./page/dashboard/Dashboard";
+import LandingPage from "./page/landingpage/LandingPage"
+import {AuthContext} from "./context/Authcontext"
 function App() {
+  const {loggedin} = useContext(AuthContext)
   return (
     <div className="App">
-      <Router>
-        <NoteProvider>
-          <Navbar />
-          <Sidebar />
-
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/trash' element={<Trash/>}/>
-            <Route path='/archive'element={<Archive/>}/>
-          </Routes>
-        </NoteProvider>
-      </Router>
-
-
+    {loggedin?<Dashboard/>:<LandingPage/>}
     </div>
   );
 }
