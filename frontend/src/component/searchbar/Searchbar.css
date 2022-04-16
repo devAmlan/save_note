@@ -24,3 +24,17 @@
   outline: none;
   font-family: "DM Sans", sans-serif;
 }
+.filter_btn {
+  width: 4rem;
+  height: 3.5rem;
+  background-color: var(--primarycolor);
+  margin-left: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:2rem;
+  color:var(--white);
+}
