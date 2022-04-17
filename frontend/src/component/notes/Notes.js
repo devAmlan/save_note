@@ -1,23 +1,15 @@
-import { collection, onSnapshot } from 'firebase/firestore'
-import React, { useState, useEffect } from 'react'
-import { db } from "../../config/firebase-config"
+import {useContext} from "react"
 import Note from "../note/Note"
+import {NoteContext} from "../../context/Notecontext"
 import "./Notes.css"
 function Notes() {
-    const [notes, setNotes] = useState([])
+    const {filteredNotes} = useContext(NoteContext)
 
-    useEffect(() => {
-        (async () => {
-            onSnapshot(collection(db, "notes"), (snapshot) => {
-                setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-            })
-        })()
-    }, [])
     return (
         <> <div className="pinned_notes">
             <h3>Pinned</h3>
             {
-                notes.map((note) => {
+                filteredNotes.map((note) => {
                     if (note.pin && !note.trash && !note.archive) {
                         return (
                             <div key={note.id}>
@@ -40,7 +32,7 @@ function Notes() {
             <div className="all_notes">
                 <h3>Others</h3>
                 {
-                    notes.map((note) => {
+                    filteredNotes.map((note) => {
                         if (!note.pin && !note.trash && !note.archive) {
                             return (
                                 <div key={note.id}>
